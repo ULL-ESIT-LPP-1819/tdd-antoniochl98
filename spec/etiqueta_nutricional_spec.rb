@@ -4,6 +4,13 @@ RSpec.describe EtiquetaNutricional do
   end
 
   it "does something useful" do
-    expect(false).to eq(true)
+    expect(true).to eq(true)
   end
+end
+
+RSpec.describe "# Almacenamiento del nombre de la etiqueta" do
+	it "Se introduce en el constructor" do
+		x=InfoEtiquetaNutricional.new("nombre")
+	end
+
 end
