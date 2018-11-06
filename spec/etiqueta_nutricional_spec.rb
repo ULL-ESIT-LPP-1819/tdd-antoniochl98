@@ -8,9 +8,20 @@ RSpec.describe EtiquetaNutricional do
   end
 end
 
-RSpec.describe "# Almacenamiento del nombre de la etiqueta" do
-	it "Se introduce en el constructor" do
+RSpec.describe "# Almacenamiento de los párametros de la etiqueta" do
+		it "Se introducen en el constructor" do
 		x=InfoEtiquetaNutricional.new("nombre")
 	end
 
+end
+
+RSpec.describe InfoEtiquetaNutricional do
+	before :each do
+		@x = InfoEtiquetaNutricional.new("nombre")
+	end
+	describe "# Obteniendo los datos de la etiqueta" do
+		it "Se obtie el nombre del producto" do
+			expect("nombre").to eq(@x.nombre)
+		end
+	end
 end
