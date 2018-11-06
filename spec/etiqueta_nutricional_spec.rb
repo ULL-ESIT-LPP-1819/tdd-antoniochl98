@@ -10,7 +10,7 @@ end
 
 RSpec.describe InfoEtiquetaNutricional do
 	before :each do
-		@x = InfoEtiquetaNutricional.new("nombre",80.2,13.8)
+		@x = InfoEtiquetaNutricional.new("nombre",80.2,13.8,0.5)
 	end
 	describe "# Obteniendo los datos de la etiqueta" do
 		it "Se obtiene el nombre del producto" do
@@ -23,6 +23,9 @@ RSpec.describe InfoEtiquetaNutricional do
 
 		it "Se obtiene las grasas saturadas del producto" do
 			expect(13.8).to eq(@x.gr_saturadas)
+		end
+		it "Se obtiene los hidratos de carbono del producto" do
+			expect(0.5).to eq(@x.hidratos)
 		end
 	end
 end
