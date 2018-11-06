@@ -22,7 +22,7 @@ RSpec.describe InfoEtiquetaNutricional do
 		end
 
 		it "Se obtiene las grasas saturadas del producto" do
-			expext(13.8).to eq(@x.gr_saturadas)
+			expect(13.8).to eq(@x.gr_saturadas)
 		end
 	end
 end

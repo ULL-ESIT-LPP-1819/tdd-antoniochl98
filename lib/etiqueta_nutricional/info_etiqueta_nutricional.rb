@@ -1,6 +1,6 @@
 class InfoEtiquetaNutricional
-	attr_reader :nombre, :grasas
-	def initialize(nombre,grasas)
-		@nombre, @grasas=nombre, grasas
+	attr_reader :nombre, :grasas, :gr_saturadas
+	def initialize(nombre,grasas,gr_saturadas)
+		@nombre, @grasas, @gr_saturadas=nombre, grasas, gr_saturadas
 	end
 end
