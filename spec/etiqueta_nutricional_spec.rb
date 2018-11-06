@@ -40,5 +40,12 @@ RSpec.describe InfoEtiquetaNutricional do
 		it "Se obtiene la sal del producto" do
 			expect(0).to eq(@x.sal)
 		end
+
+		it "Se obtiene las grasas monoinsaturadas del producto" do
+			expect("no_declarado").to eq (@x.gr_monoinsaturadas)
+			y = InfoEtiquetaNutricional.new("nombre",80.2,13.8,0.5,0,0.8,0,28.5)
+			expect(28.5).to eq(y.gr_monoinsaturadas)
+		end
+
 	end
 end
