@@ -11,6 +11,7 @@ end
 RSpec.describe InfoEtiquetaNutricional do
 	before :each do
 		@x = InfoEtiquetaNutricional.new("nombre",80.2,13.8,0.5,0,0.8,0)
+		@y = InfoEtiquetaNutricional.new("nombre",80.2,13.8,0.5,0,0.8,0,28.5,34.6,0,0,4.3,0.005)
 	end
 	describe "# Obteniendo los datos de la etiqueta" do
 		it "Se obtiene el nombre del producto" do
@@ -43,38 +44,37 @@ RSpec.describe InfoEtiquetaNutricional do
 
 		it "Se obtiene las grasas monoinsaturadas del producto" do
 			expect("no_declarado").to eq (@x.gr_monoinsaturadas)
-			y = InfoEtiquetaNutricional.new("nombre",80.2,13.8,0.5,0,0.8,0,28.5)
-			expect(28.5).to eq(y.gr_monoinsaturadas)
+			expect(28.5).to eq(@y.gr_monoinsaturadas)
 		end
 
 		it "Se obtiene las grasas poliinsaturadas del producto" do
 			expect("no_declarado").to eq (@x.gr_poliinsaturadas)
-			y = InfoEtiquetaNutricional.new("nombre",80.2,13.8,0.5,0,0.8,0,28.5,34.6)
-			expect(34.6).to eq(y.gr_poliinsaturadas)
+			expect(34.6).to eq(@y.gr_poliinsaturadas)
 		end
 
 		it "Se obtiene los polialcoholes del producto" do
 			expect("no_declarado").to eq (@x.polialcoholes)
-			y = InfoEtiquetaNutricional.new("nombre",80.2,13.8,0.5,0,0.8,0,28.5,34.6,0)
-			expect(0).to eq(y.polialcoholes)
+			expect(0).to eq(@y.polialcoholes)
 		end
 
 		it "Se obtiene el almidón del producto" do
 			expect("no_declarado").to eq (@x.almidon)
-			y = InfoEtiquetaNutricional.new("nombre",80.2,13.8,0.5,0,0.8,0,28.5,34.6,0,0)
-			expect(0).to eq(y.almidon)
+			expect(0).to eq(@y.almidon)
 		end
 
 		it "Se obtiene la fibra alimentaria del producto" do
 			expect("no_declarado").to eq (@x.fbr_alim)
-			y = InfoEtiquetaNutricional.new("nombre",80.2,13.8,0.5,0,0.8,0,28.5,34.6,0,0,4.3)
-			expect(4.3).to eq(y.fbr_alim)
+			expect(4.3).to eq(@y.fbr_alim)
 		end
 
-		it "Se obtiene las vitaminas del producto" do
+		it "Se obtiene las vitaminas y minerales del producto" do
 			expect(@x.vitaminas).to eq ("no_declarado")
-			y = InfoEtiquetaNutricional.new("nombre",80.2,13.8,0.5,0,0.8,0,28.5,34.6,0,0,4.3,0.5)
-			expect(y.vitaminas).to eq(0.5)
+			expect(@y.vitaminas).to eq(0.005)
+		end
+
+		it "Se obtiene el valor energético en KJ del producto" do
+			expect(@x.val_ener_kj).to eq (2982.1)
+			expect(@y.val_ener_kj).to eq(3016.5)
 		end
 
 	end
