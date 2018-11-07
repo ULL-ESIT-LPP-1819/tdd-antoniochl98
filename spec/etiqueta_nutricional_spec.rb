@@ -71,5 +71,11 @@ RSpec.describe InfoEtiquetaNutricional do
 			expect(4.3).to eq(y.fbr_alim)
 		end
 
+		it "Se obtiene las vitaminas del producto" do
+			expect(@x.vitaminas).to eq ("no_declarado")
+			y = InfoEtiquetaNutricional.new("nombre",80.2,13.8,0.5,0,0.8,0,28.5,34.6,0,0,4.3,0.5)
+			expect(y.vitamina).to eq(0.5)
+		end
+
 	end
 end
