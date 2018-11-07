@@ -87,7 +87,13 @@ RSpec.describe InfoEtiquetaNutricional do
 			expect(@x.IR).to eq ([35.59,114.57,69,0.19,0,1.6,0])
 		end
 
+		it "Se obtiene la cantidad de porciones" do
+			expect(@y.porcion).to eq(6)
+		end
 
+		it "Se obtiene los gramos de cada porcion" do
+			expect(@y.g_porcion).to eq(5)	
+		end
 
 	end
 
