@@ -84,7 +84,7 @@ RSpec.describe InfoEtiquetaNutricional do
 		end
 
 		it "Se obtiene las IR del producto" do
-			expect(@x.IR).to eq ([35.59,114.57,69,0.19,0,1.8,0])
+			expect(@x.IR).to eq ([35.59,114.57,69,0.19,0,1.6,0])
 		end
 
 

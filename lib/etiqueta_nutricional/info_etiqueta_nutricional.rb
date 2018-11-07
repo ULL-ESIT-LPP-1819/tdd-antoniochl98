@@ -30,4 +30,16 @@ class InfoEtiquetaNutricional
 		end
 		c.round(2)
 	end
+
+	def IR()
+		v1=[self.val_ener_kj,@grasas,@gr_saturadas,@hidratos,@azucar,@proteinas,@sal]
+		v2=[8400,70,20,260,90,50,6]
+		v3=[]
+		i=0
+		while i<7 do
+			v3.push((v1[i]*100/v2[i]).round(2))
+			i+=1
+		end
+		v3
+	end
 end
