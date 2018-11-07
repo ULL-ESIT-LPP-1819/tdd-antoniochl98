@@ -11,7 +11,7 @@ end
 RSpec.describe InfoEtiquetaNutricional do
 	before :each do
 		@x = InfoEtiquetaNutricional.new("nombre",80.2,13.8,0.5,0,0.8,0)
-		@y = InfoEtiquetaNutricional.new("nombre",80.2,13.8,0.5,0,0.8,0,28.5,34.6,0,0,4.3,0.005,6,5,6,5,6,5,6,5,6,5,6,5)
+		@y = InfoEtiquetaNutricional.new("nombre",80.2,13.8,0.5,0,0.8,0,28.5,34.6,0,0,4.3,0.005,6,5)
 	end
 	describe "# Obteniendo los datos de la etiqueta" do
 		it "Se obtiene el nombre del producto" do
