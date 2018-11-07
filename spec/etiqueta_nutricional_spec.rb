@@ -53,5 +53,11 @@ RSpec.describe InfoEtiquetaNutricional do
 			expect(34.6).to eq(y.gr_poliinsaturadas)
 		end
 
+		it "Se obtiene los polialcoholes del producto" do
+			expect("no_declarado").to eq (@x.polialcoholes)
+			y = InfoEtiquetaNutricional.new("nombre",80.2,13.8,0.5,0,0.8,0,28.5,34.6,0)
+			expect(0).to eq(y.polialcoholes)
+		end
+
 	end
 end
