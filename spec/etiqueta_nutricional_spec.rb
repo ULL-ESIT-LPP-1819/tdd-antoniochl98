@@ -77,5 +77,11 @@ RSpec.describe InfoEtiquetaNutricional do
 			expect(@y.val_ener_kj).to eq(3023.9)
 		end
 
+		it "Se obtiene el valor energético en Kcal del producto" do
+			expect(@x.val_ener_kcal).to eq (727)
+			expect(@y.val_ener_kcal.to eq(735.6)
+		end
+
 	end
+
 end

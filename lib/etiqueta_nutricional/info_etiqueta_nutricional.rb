@@ -11,7 +11,6 @@ class InfoEtiquetaNutricional
 		while i<5 do
 			if v1[i]!="no_declarado" then
 				c+=(v1[i]*v2[i])
-				puts c
 			end
 			i+=1
 		end
