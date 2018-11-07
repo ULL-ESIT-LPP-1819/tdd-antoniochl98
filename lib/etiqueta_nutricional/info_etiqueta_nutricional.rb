@@ -14,6 +14,20 @@ class InfoEtiquetaNutricional
 			end
 			i+=1
 		end
-		c
+		c.round(2)
+	end
+
+	def val_ener_kcal()
+		v1=[@grasas,@hidratos,@proteinas,@sal,@fbr_alim]
+		v2=[9,4,4,6,2]
+		c=0
+		i=0
+		while i<5 do
+			if v1[i]!="no_declarado" then
+				c+=(v1[i]*v2[i])
+			end
+			i+=1
+		end
+		c.round(2)
 	end
 end
