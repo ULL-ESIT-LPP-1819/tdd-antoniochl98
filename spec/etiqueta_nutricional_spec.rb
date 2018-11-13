@@ -95,6 +95,10 @@ RSpec.describe InfoEtiquetaNutricional do
 			expect(@y.g_porcion).to eq(5)	
 		end
 
+		it "Se obtienen todos los datos de la etiqueta" do
+			expect(@y.to_s).to eq("Por 100g de producto: \nvalor energético: 3023.9KJ\nvalor energético: 735.6Kcal\ngrasas: 80.2\ngrasas saturadas: 13.8\nhidratos de carbono: 0.5\nazúcares: 0\nproteínas: 0.8\nsal: 0\ngrasas monoinsaturadas: 28.5\ngrasas poliinsaturadas: 34.6\npolialcoholes: 0\nalmidon: 0\nfibra alimentaria: 4.3\nvitaminas: 0.005\n\n\nPor cada porcion de 5g: \nvalor energético: 604.78KJ\nvalor energético: 147.12Kcal\ngrasas: 16.04\ngrasas saturadas: 2.7600000000000002\nhidratos de carbono: 0.1\nazúcares: 0\nproteínas: 0.16\nsal: 0\ngrasas monoinsaturadas: 5.7\ngrasas poliinsaturadas: 6.92\npolialcoholes: 0\nalmidon: 0\nfibra alimentaria: 0.86\nvitaminas: 0.001\n")
+		end
+
 	end
 
 end

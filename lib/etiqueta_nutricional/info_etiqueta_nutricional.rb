@@ -43,6 +43,29 @@ class InfoEtiquetaNutricional
 		v3
 	end
 
-          
+	def to_s()
+		v1=[self.val_ener_kj,self.val_ener_kcal,@grasas,@gr_saturadas,@hidratos,@azucar,@proteinas,@sal,@gr_monoinsaturadas,@gr_poliinsaturadas,@polialcoholes,@almidon,@fbr_alim,@vitaminas]
+		v2=["valor energético: ","valor energético: ","grasas: ","grasas saturadas: ","hidratos de carbono: ","azúcares: ","proteínas: ","sal: ","grasas monoinsaturadas: ","grasas poliinsaturadas: ","polialcoholes: ","almidon: ","fibra alimentaria: ","vitaminas: "]
+
+		s="Por 100g de producto: \n"
+		i=2
+		s+=(v2[0]+v1[0].to_s+"KJ\n"+v2[1]+v1[1].to_s+"Kcal\n")
+		while i<v1.size do
+			s+=(v2[i]+v1[i].to_s+"\n")
+			i+=1
+		end	
+
+		if @g_porcion!="no_declarado" then
+			s+="\n\n\Por cada porcion de "+ @g_porcion.to_s+"g: \n"
+	                i=2
+			s+=(v2[0]+(v1[0]/@g_porcion).to_s+"KJ\n"+v2[1]+(v1[1]/@g_porcion).to_s+"Kcal\n")
+			while i<v1.size do
+				s+=(v2[i]+(v1[i]/@g_porcion).to_s+"\n")
+                        	i+=1
+                	end
+		end
+		s
+	end
+
 
 end
