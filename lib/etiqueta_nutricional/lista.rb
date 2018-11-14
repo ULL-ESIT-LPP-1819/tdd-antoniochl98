@@ -35,7 +35,7 @@ class Lista
 			@head.prev="NULL"
 			@size-=1
 
-		elsif @head != "NULL"
+		else
 			@head.value="NULL"
 			@size-=1
 		end
@@ -62,7 +62,7 @@ class Lista
 			@tail=@tail.prev
 			@tail.next="NULL"
 			@size-=1
-		elsif @tail != "NULL"
+		else
 			@tail.value="NULL"
 			@size-=1
 		end
@@ -74,7 +74,7 @@ class Lista
 		v_alto=[]
 
 		while aux.next!="NULL"
-			if aux.value.sal<=6
+			if aux.value.sal<=a
 				v_bajo.push(aux)
 			else
 				v_alto.push(aux)
