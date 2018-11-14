@@ -91,6 +91,10 @@ class Lista
 
 	end
 
+	def empty()
+		(@head.value=="NULL")
+	end	
+
 	def to_s()
 		s=""
 		aux=@head

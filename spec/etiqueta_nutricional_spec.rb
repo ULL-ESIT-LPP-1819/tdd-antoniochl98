@@ -118,7 +118,7 @@ RSpec.describe InfoEtiquetaNutricional do
 			expect(list.tail.value).to eq(@x)
 			expect(list.size).to eq(1)
 			list.pop_tail
-			expect(list.size).to eq(0)
+			expect(list.empty).to eq(true)
 		end
 		
 		it "Se clasifican los valores según su sal" do
