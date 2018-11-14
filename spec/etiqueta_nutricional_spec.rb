@@ -11,7 +11,7 @@ end
 RSpec.describe InfoEtiquetaNutricional do
 	before :each do
 		@x = InfoEtiquetaNutricional.new("nombre",80.2,13.8,0.5,0,0.8,0)
-		@y = InfoEtiquetaNutricional.new("nombre",80.2,13.8,0.5,0,0.8,0,28.5,34.6,0,0,4.3,0.005,6,5)
+		@y = InfoEtiquetaNutricional.new("nombre_2",80.2,13.8,0.5,0,0.8,0,28.5,34.6,0,0,4.3,0.005,6,5)
 	end
 	describe "# Obteniendo los datos de la etiqueta" do
 		it "Se obtiene el nombre del producto" do
@@ -98,7 +98,29 @@ RSpec.describe InfoEtiquetaNutricional do
 		it "Se obtienen todos los datos de la etiqueta" do
 			expect(@y.to_s).to eq("Por 100g de producto: \nvalor energético: 3023.9KJ\nvalor energético: 735.6Kcal\ngrasas: 80.2\ngrasas saturadas: 13.8\nhidratos de carbono: 0.5\nazúcares: 0\nproteínas: 0.8\nsal: 0\ngrasas monoinsaturadas: 28.5\ngrasas poliinsaturadas: 34.6\npolialcoholes: 0\nalmidon: 0\nfibra alimentaria: 4.3\nvitaminas: 0.005\n\n\nPor cada porcion de 5g: \nvalor energético: 604.78KJ\nvalor energético: 147.12Kcal\ngrasas: 16.04\ngrasas saturadas: 2.7600000000000002\nhidratos de carbono: 0.1\nazúcares: 0\nproteínas: 0.16\nsal: 0\ngrasas monoinsaturadas: 5.7\ngrasas poliinsaturadas: 6.92\npolialcoholes: 0\nalmidon: 0\nfibra alimentaria: 0.86\nvitaminas: 0.001\n")
 		end
-
 	end
+
+	describe "#Probando funcionalidad de la lista" do
+		it "Se comprueba la funcionalidad de la lista" do
+			a = InfoEtiquetaNutricional.new("nombre_3",80.2,13.8,0.5,0,0.8,50,28.5,34.6,0,0,4.3,0.005,6,5)
+			b = InfoEtiquetaNutricional.new("nombre_4",80.2,13.8,0.5,0,0.8,10,28.5,34.6,0,0,4.3,0.005,6,5)
+			c = InfoEtiquetaNutricional.new("nombre_5",80.2,13.8,0.5,0,0.8,4,28.5,34.6,0,0,4.3,0.005,6,5)
+			list=Lista.new
+			list.push_head(@x)
+			expect(list.head.value).to eq(@x)
+			expect(list.tail.value).to eq(@x)
+			list.push_tail(@y)
+			expect(list.head.value).to eq(@x)
+			expect(list.tail.value).to eq(@y)
+			expect(list.size).to eq(2)
+			list.pop_tail
+			expect(list.head.value).to eq(@x)
+			expect(list.tail.value).to eq(@x)
+			expect(list.size).to eq(1)
+			list.pop_tail
+			expect(list.size).to eq(0)
+		end
+	end
+		
 
 end
