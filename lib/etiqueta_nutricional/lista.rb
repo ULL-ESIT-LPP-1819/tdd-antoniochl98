@@ -68,6 +68,29 @@ class Lista
 		end
 	end
 
+	def clasifica(a)
+		aux=@head
+		v_bajo=[]
+		v_alto=[]
+
+		while aux.next!="NULL"
+			if aux.value.sal<=6
+				v_bajo.push(aux)
+			else
+				v_alto.push(aux)
+			end
+			aux=aux.next
+		end
+		
+		if aux.value.sal<=6
+			v_bajo.push(aux)
+		else
+			v_alto.push(aux)
+		end
+		v_clasificado=[v_bajo,v_alto]
+
+	end
+
 	def to_s()
 		s=""
 		aux=@head
@@ -83,6 +106,8 @@ class Lista
 		end
 		s
 	end
+
+	
 
 
 end

@@ -120,6 +120,27 @@ RSpec.describe InfoEtiquetaNutricional do
 			list.pop_tail
 			expect(list.size).to eq(0)
 		end
+		
+		it "Se clasifican los valores según su sal" do
+			a = InfoEtiquetaNutricional.new("nombre_3",80.2,13.8,0.5,0,0.8,50,28.5,34.6,0,0,4.3,0.005,6,5)
+			b = InfoEtiquetaNutricional.new("nombre_4",80.2,13.8,0.5,0,0.8,10,28.5,34.6,0,0,4.3,0.005,6,5)
+			c = InfoEtiquetaNutricional.new("nombre_5",80.2,13.8,0.5,0,0.8,4,28.5,34.6,0,0,4.3,0.005,6,5)
+			list=Lista.new
+			
+			list.push_tail(@x)
+			list.push_tail(@y)
+			list.push_tail(a)
+			list.push_tail(b)
+			list.push_tail(c)
+
+			v_clasificado=list.clasifica(6)
+			expect(v_clasificado[0][0].value).to eq(@x)
+			expect(v_clasificado[0][1].value).to eq(@y)
+			expect(v_clasificado[0][2].value).to eq(c)
+			expect(v_clasificado[1][0].value).to eq(a)
+			expect(v_clasificado[1][1].value).to eq(b)
+		end
+
 	end
 		
 
