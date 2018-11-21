@@ -100,6 +100,10 @@ RSpec.describe InfoEtiquetaNutricional do
 		end
 	end
 
+
+
+
+
 	describe "#Probando funcionalidad de la lista" do
 		it "Se comprueba la funcionalidad de la lista" do
 			a = InfoEtiquetaNutricional.new("nombre_3",80.2,13.8,0.5,0,0.8,50,28.5,34.6,0,0,4.3,0.005,6,5)
