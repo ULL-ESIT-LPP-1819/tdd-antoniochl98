@@ -156,13 +156,45 @@ RSpec.describe InfoEtiquetaNutricional do
 			p3=Paciente.new("Pipo",datos)
 			expect("#{p1.class}").to eq("Persona")
 			expect("#{p2.class}").to eq("Paciente")
+			expect("#{p2.nombre}").to eq("Juan")
 			expect(p2.tratamiento).to eq(false)
 			expect("#{p2.class.superclass}").to eq("Persona")
 			expect("#{p3.class}").to eq("Paciente")
 			expect(p3.tratamiento).to eq(true)
 			expect("#{p3.class.superclass}").to eq("Persona")
 		end
-	end
-		
+
+		it "Se clasifica a los pacientes según el imc" do
+			datos1 = DatosSalud.new(1,18,20,'H',70.0,80.0)
+			datos2 = DatosSalud.new(1,22,20,'H',70.0,80.0)
+			datos3 = DatosSalud.new(1,27,20,'H',70.0,80.0)
+			datos4 = DatosSalud.new(1,32,20,'H',70.0,80.0)
+			datos5 = DatosSalud.new(1,37,20,'H',70.0,80.0)
+			datos6 = DatosSalud.new(1,41,20,'H',70.0,80.0)
+			p1=Paciente.new("Pipo",datos1)
+			p2=Paciente.new("Pipo",datos2)
+			p3=Paciente.new("Pipo",datos3)
+			p4=Paciente.new("Pipo",datos4)
+			p5=Paciente.new("Pipo",datos5)
+			p6=Paciente.new("Pipo",datos6)
+			list=Lista.new
+			list.push_tail(p1)
+			list.push_tail(p2)
+			list.push_tail(p3)
+			list.push_tail(p4)
+			list.push_tail(p5)
+			list.push_tail(p6)
+			v2=["Bajo","Adecuado","Sobrepeso","Obesidad_1","Obesidad_2","Obesidad_3"]
+			v1=[p1,p2,p3,p4,p5,p6]
+			aux=list.head
+			i=0
+			while aux!="NULL" do
+				expect(v1[i].clas_imc).to eq(v[2])
+				aux=aux.next
+				i+=1
+			end
+
+		end
+	end	
 
 end
