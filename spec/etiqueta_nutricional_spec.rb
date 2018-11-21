@@ -196,7 +196,8 @@ RSpec.describe InfoEtiquetaNutricional do
 
 		end
 
-		it "to_s" do 
+		it "to_s" do
+
 			datos1 = DatosSalud.new(1,18,20,'H',70.0,80.0)
 			p1=Paciente.new("Pipo",datos1)
 			expect(p1.to_s).to eq("Nombre: Pipo\ntalla= 1\npeso= 18\nedad= 20\nsexo= H\ncintura= 70.0\ncadera= 80.0\nimc= 18\nporcentaje de grasa= 9.999999999999998%\nRelación Cintura/Cadera= 0.875\n")
