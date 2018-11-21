@@ -66,6 +66,5 @@ class InfoEtiquetaNutricional
 		end
 		s
 	end
-#prueba guard
 
 end
