@@ -149,7 +149,7 @@ RSpec.describe InfoEtiquetaNutricional do
 
 	describe "#Pruebas de personas y pacientes" do
 		
-		it "Se comprueba si lo que está en la lista son personas o pacientes" do
+		it "Se comprueba la jerarquía de clases y el correcto almacenamiento de datos" do
 			datos = DatosSalud.new(1.75,65.2,20,'H',70.0,80.0)
 			p1=Persona.new("Pepe")
 			p2=Paciente.new("Juan")
