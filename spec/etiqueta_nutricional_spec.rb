@@ -189,7 +189,7 @@ RSpec.describe InfoEtiquetaNutricional do
 			aux=list.head
 			i=0
 			while aux!="NULL" do
-				expect(v1[i].clas_imc).to eq(v[2])
+				expect(v1[i].clas_imc).to eq(v2[i])
 				aux=aux.next
 				i+=1
 			end

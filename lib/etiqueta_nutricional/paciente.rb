@@ -9,4 +9,22 @@ class Paciente < Persona
 	def tratamiento()
 		!datos_antro.nil?
 	end
+	def clas_imc()
+		if tratamiento then
+			s=""
+			if @datos_antro.imc<18.5
+				s="Bajo"
+			elsif @datos_antro.imc<24.9
+				s="Adecuado"
+			elsif @datos_antro.imc<29.9
+				s="Sobrepeso"
+			elsif @datos_antro.imc<34.9
+				s="Obesidad_1"
+			elsif @datos_antro.imc<39.9
+				s="Obesidad_2"
+			else
+				s="Obesidad_3"
+			end
+		end
+	end
 end	
