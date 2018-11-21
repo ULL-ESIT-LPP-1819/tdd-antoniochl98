@@ -6,4 +6,7 @@ class Paciente < Persona
 		super(nombre)
 		@datos_antro=datos_antro
 	end
+	def tratamiento()
+		!datos_antro.nil?
+	end
 end	

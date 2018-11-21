@@ -146,6 +146,23 @@ RSpec.describe InfoEtiquetaNutricional do
 		end
 
 	end
+
+	describe "#Pruebas de personas y pacientes" do
+		
+		it "Se comprueba si lo que está en la lista son personas o pacientes" do
+			datos = DatosSalud.new(1.75,65.2,20,'H',70.0,80.0)
+			p1=Persona.new("Pepe")
+			p2=Paciente.new("Juan")
+			p3=Paciente.new("Pipo",datos)
+			expect("#{p1.class}").to eq("Persona")
+			expect("#{p2.class}").to eq("Paciente")
+			expect(p2.tratamiento).to eq(false)
+			expect("#{p2.class.superclass}").to eq("Persona")
+			expect("#{p3.class}").to eq("Paciente")
+			expect(p3.tratamiento).to eq(true)
+			expect("#{p3.class.superclass}").to eq("Persona")
+		end
+	end
 		
 
 end
