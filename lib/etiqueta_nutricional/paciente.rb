@@ -7,7 +7,7 @@ class Paciente < Persona
 		@datos_antro=datos_antro
 	end
 	def tratamiento()
-		!datos_antro.nil?
+		!@datos_antro.nil?
 	end
 	def clas_imc()
 		if tratamiento then
@@ -25,6 +25,16 @@ class Paciente < Persona
 			else
 				s="Obesidad_3"
 			end
+		end
+	end
+	
+	def to_s()
+		s=super.to_s
+		s+="\n"
+		if tratamiento then
+			s+=@datos_antro.to_s
+		else
+			s+="No está en tratamiento para la obesidad"
 		end
 	end
 end	

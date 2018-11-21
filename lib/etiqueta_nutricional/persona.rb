@@ -4,4 +4,7 @@ class Persona
 	def initialize(nombre)
 		@nombre=nombre
 	end
+	def to_s()
+		s="Nombre: #{@nombre}"
+	end
 end

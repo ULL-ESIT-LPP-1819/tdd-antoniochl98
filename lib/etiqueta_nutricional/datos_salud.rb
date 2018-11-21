@@ -19,4 +19,15 @@ class DatosSalud
 	def rcc()
 		@cintura/@cadera
 	end
+	def to_s()
+		s="talla= #{@talla}\n"
+		s+="peso= #{@peso}\n"
+		s+="edad= #{@edad}\n"
+		s+="sexo= #{@sexo}\n"
+		s+="cintura= #{@cintura}\n"
+		s+="cadera= #{@cadera}\n"
+		s+="imc= #{self.imc}\n"
+		s+="porcentaje de grasa= #{self.porc_grasa}%\n"
+		s+="Relación Cintura/Cadera= #{self.rcc}\n"
+	end
 end
