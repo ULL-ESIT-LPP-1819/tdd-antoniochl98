@@ -223,6 +223,7 @@ RSpec.describe InfoEtiquetaNutricional do
 			expect(datos1<datos2).to eq(true)
 			expect(datos2>datos1).to eq(true)
 			expect(datos1==datos2).to eq(false)
+		
 		end
 
 	end
