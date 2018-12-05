@@ -1,4 +1,5 @@
 class InfoEtiquetaNutricional
+	include Comparable
 	attr_reader :nombre,:grasas,:gr_saturadas,:hidratos,:azucar,:proteinas,:sal,:gr_monoinsaturadas,:gr_poliinsaturadas,:polialcoholes,:almidon,:fbr_alim,:vitaminas,:porcion,:g_porcion
 	def initialize(nombre,grasas,gr_saturadas,hidratos,azucar,proteinas,sal,gr_monoinsaturadas="no_declarado",gr_poliinsaturadas="no_declarado",polialcoholes="no_declarado",almidon="no_declarado",fbr_alim="no_declarado",vitaminas="no_declarado",porcion="no_declarado",g_porcion="no_declarado")
 		@nombre,@grasas,@gr_saturadas,@hidratos,@azucar,@proteinas,@sal,@gr_monoinsaturadas,@gr_poliinsaturadas,@polialcoholes,@almidon,@fbr_alim,@vitaminas,@porcion,@g_porcion=nombre,grasas,gr_saturadas,hidratos,azucar,proteinas,sal,gr_monoinsaturadas,gr_poliinsaturadas,polialcoholes,almidon,fbr_alim,vitaminas,porcion,g_porcion
@@ -65,6 +66,11 @@ class InfoEtiquetaNutricional
                 	end
 		end
 		s
+	end
+
+	def <=>(other)
+		return nil unless other.instance_of?InfoEtiquetaNutricional
+		val_ener_kj()<=>other.val_ener_kj
 	end
 
 end

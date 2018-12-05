@@ -1,4 +1,5 @@
 class DatosSalud
+	include Comparable
 	attr_accessor:talla, :peso, :edad, :sexo, :cintura, :cadera
 	def initialize(talla, peso, edad, sexo, cintura, cadera)
 		@talla, @peso, @edad, @sexo, @cintura, @cadera=talla, peso, edad, sexo, cintura, cadera
@@ -29,5 +30,10 @@ class DatosSalud
 		s+="imc= #{self.imc}\n"
 		s+="porcentaje de grasa= #{self.porc_grasa}%\n"
 		s+="Relación Cintura/Cadera= #{self.rcc}\n"
+	end
+
+	def <=>(other)
+		return nil unless other.instance_of? DatosSalud
+		imc()<=>other.imc
 	end
 end

@@ -3,25 +3,26 @@ Node=Struct.new(:value,:next,:prev)
 
 
 class Lista
+	include Enumerable
        attr_reader :head,:tail,:size	
 	def initialize()
-		@head=Node.new
-		@head.value="NULL"
-		@head.next="NULL"
-		@head.prev="NULL"
+		@head=nil
 		@tail=@head
 		@size=0	
 	end
 
 	def push_head(a)
-		if @head.value == "NULL" then
+		if @head.nil? then
+			@head=Node.new
 			@head.value=a
+			@head.prev=nil
+			@head.next=nil
 			@tail=@head
 			@size+=1
 		else
 			aux=Node.new
 			aux.value=a
-			aux.prev="NULL"
+			aux.prev=nil
 			aux.next=@head
 			@head.prev=aux
 			@head=aux
@@ -32,25 +33,29 @@ class Lista
 	def pop_head()
 		if @head != @tail
 			@head=@head.next
-			@head.prev="NULL"
+			@head.prev=nil
 			@size-=1
 
 		else
-			@head.value="NULL"
+			@head=nil
+			@tail=@head
 			@size-=1
 		end
 	end
 
 	def push_tail(a)
-		if @head.value == "NULL" then
+		if @head.nil? then
+			@tail=Node.new()
 			@tail.value=a
+			@tail.next=nil
+			@tail.prev=nil
 			@head=@tail
 			@size+=1
 		else
 			aux=Node.new
 			aux.value=a
 			aux.prev=@tail
-			aux.next="NULL"
+			aux.next=nil
 			@tail.next=aux
 			@tail=aux
 			@size+=1
@@ -60,10 +65,11 @@ class Lista
 	def pop_tail()
 		if @head != @tail
 			@tail=@tail.prev
-			@tail.next="NULL"
+			@tail.next=nil
 			@size-=1
 		else
-			@tail.value="NULL"
+			@tail=nil
+			@head=@tail
 			@size-=1
 		end
 	end
@@ -73,7 +79,7 @@ class Lista
 		v_bajo=[]
 		v_alto=[]
 
-		while aux.next!="NULL"
+		while !aux.next.nil?
 			if aux.value.sal<=a
 				v_bajo.push(aux)
 			else
@@ -92,26 +98,30 @@ class Lista
 	end
 
 	def empty()
-		(@head.value=="NULL")
+		(@head.nil?)
 	end	
 
 	def to_s()
 		s=""
 		aux=@head
-		while aux.next!="NULL" 
+		while !aux.next.nil do 
 			s+="["+aux.value.to_s+"]"
 			aux=aux.next
 			if aux.value!="NULL"
 				s+="<->"
 			end
 		end
-		if aux.value!="NULL"
+		if !aux.nil?
 			s+="["+aux.value.to_s+"]"
 		end
 		s
 	end
 
-	
-
-
+	def each
+		node=@head
+		while !node.nil?
+			yield node.value
+			node=node.next
+		end
+	end
 end

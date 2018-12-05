@@ -189,7 +189,7 @@ RSpec.describe InfoEtiquetaNutricional do
 			v1=[p1,p2,p3,p4,p5,p6]
 			aux=list.head
 			i=0
-			while aux!="NULL" do
+			while !aux.nil? do
 				expect(v1[i].clas_imc).to eq(v2[i])
 				aux=aux.next
 				i+=1
@@ -203,6 +203,74 @@ RSpec.describe InfoEtiquetaNutricional do
 			p1=Paciente.new("Pipo",datos1)
 			expect(p1.to_s).to eq("Nombre: Pipo\ntalla= 1\npeso= 18\nedad= 20\nsexo= H\ncintura= 70.0\ncadera= 80.0\nimc= 18\nporcentaje de grasa= 9.999999999999998%\nRelación Cintura/Cadera= 0.875\n")
 		end
-	end	
+		
+	end
 
+	describe "#Pruebas comparacion" do
+		
+		it "comparable de et_nutricional" do
+			x = InfoEtiquetaNutricional.new("nombre",80.2,13.8,0.5,0,0.8,0)
+			y = InfoEtiquetaNutricional.new("nombre_2",80.2,13.8,0.5,0,0.8,0,28.5,34.6,0,0,4.3,0.005,6,5)
+			expect(x<y).to eq(true)
+			expect(x>y).to eq(false)
+			expect(x==y).to eq(false)
+
+		end
+
+		it "comparable datos salud" do
+			datos1 = DatosSalud.new(1,18,20,'H',70.0,80.0)
+			datos2 = DatosSalud.new(1,22,20,'H',70.0,80.0)
+			expect(datos1<datos2).to eq(true)
+			expect(datos2>datos1).to eq(true)
+			expect(datos1==datos2).to eq(false)
+		end
+
+	end
+
+	describe "#Pruebas enumerable" do
+	       it "DatosSalud" do 
+			d1 = DatosSalud.new(1,18,20,'H',70.0,80.0)
+			d2 = DatosSalud.new(1,22,20,'H',70.0,80.0)
+			d3 = DatosSalud.new(1,27,20,'H',70.0,80.0)
+			d4 = DatosSalud.new(1,32,20,'H',70.0,80.0)
+			d5 = DatosSalud.new(1,37,20,'H',70.0,80.0)
+			d6 = DatosSalud.new(1,41,20,'H',70.0,80.0)
+			list=Lista.new
+			list.push_tail(d3)
+			list.push_tail(d5)
+			list.push_tail(d2)
+			list.push_tail(d6)
+			list.push_tail(d4)
+			list.push_tail(d1)
+
+			expect(list.collect{|x| x.imc}).to eq([27, 37, 22, 41, 32, 18])
+			expect(list.select{|x| x.imc<30}).to eq([d3,d2,d1])
+			expect(list.max).to eq(d6)
+			expect(list.min).to eq(d1)
+			expect(list.sort).to eq([d1,d2,d3,d4,d5,d6])
+
+	       end
+	       it "EtiqutaNutricional" do 
+			d1 = DatosSalud.new(1,18,20,'H',70.0,80.0)
+			d2 = DatosSalud.new(1,22,20,'H',70.0,80.0)
+			d3 = DatosSalud.new(1,27,20,'H',70.0,80.0)
+			d4 = DatosSalud.new(1,32,20,'H',70.0,80.0)
+			d5 = DatosSalud.new(1,37,20,'H',70.0,80.0)
+			d6 = DatosSalud.new(1,41,20,'H',70.0,80.0)
+			list=Lista.new
+			list.push_tail(d3)
+			list.push_tail(d5)
+			list.push_tail(d2)
+			list.push_tail(d6)
+			list.push_tail(d4)
+			list.push_tail(d1)
+
+			expect(list.collect{|x| x.imc}).to eq([27, 37, 22, 41, 32, 18])
+			expect(list.select{|x| x.imc<30}).to eq([d3,d2,d1])
+			expect(list.max).to eq(d6)
+			expect(list.min).to eq(d1)
+			expect(list.sort).to eq([d1,d2,d3,d4,d5,d6])
+
+	       end	       
+	end
 end
