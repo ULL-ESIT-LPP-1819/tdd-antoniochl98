@@ -274,4 +274,35 @@ RSpec.describe InfoEtiquetaNutricional do
 
 	       end	       
 	end
+
+	describe "#Pruebas menús" do
+		
+		it "Prueba de métodos" do
+			prod1 = InfoEtiquetaNutricional.new("nombre_1",75,13.8,0.5,0,0.8,0,28.5,34.6,0,0,4.3,0.005,6,5)
+			prod2 = InfoEtiquetaNutricional.new("nombre_2",80.2,13.8,0.5,0,0.8,0,28.5,34.6,0,0,4.3,0.005,6,5)
+			prod3 = InfoEtiquetaNutricional.new("nombre_3",80.2,13.8,0.5,0,0.8,0,28.5,34.6,0,0,4.3,0.005,6,5)
+			prod4 = InfoEtiquetaNutricional.new("nombre_4",80.2,13.8,0.5,0,0.8,0,28.5,34.6,0,0,4.3,0.005,6,5)
+			prod5 = InfoEtiquetaNutricional.new("nombre_5",80.2,13.8,0.5,0,0.8,0,28.5,34.6,0,0,4.3,0.005,6,5)
+			prod6 = InfoEtiquetaNutricional.new("nombre_6",80.2,13.8,0.5,0,0.8,0,28.5,34.6,0,0,4.3,0.005,6,5)
+			@menu1=[prod1,prod2,prod3,prod4]
+			datos1 = DatosSalud.new(170,65,20,'H',70.0,80.0)
+                        datos2 = DatosSalud.new(1,22,20,'H',70.0,80.0)
+                        datos3 = DatosSalud.new(1,27,20,'H',70.0,80.0)
+                        datos4 = DatosSalud.new(1,32,20,'H',70.0,80.0)
+                        datos5 = DatosSalud.new(1,37,20,'H',70.0,80.0)
+                        datos6 = DatosSalud.new(1,41,20,'H',70.0,80.0)
+                        @p1=Paciente.new("Pipo",datos1)
+                        @p2=Paciente.new("Pipo",datos2)
+                        @p3=Paciente.new("Pipo",datos3)
+                        @p4=Paciente.new("Pipo",datos4)
+                        @p5=Paciente.new("Pipo",datos5)
+                        @p6=Paciente.new("Pipo",datos6)
+			@pacients=[@p1,@p2,@p3,@p4,@p5,@p6]
+		
+			sum=0
+			@menu1.collect{ |x| sum=sum+x.val_ener_kcal()}
+			v=@pacients.select{ |x| ((0.9*x.gasto_ener_total()) <=sum && sum<=(1.1*x.gasto_ener_total()))}
+			expect(v.size()).to eq(0)
+		end
+	end
 end
