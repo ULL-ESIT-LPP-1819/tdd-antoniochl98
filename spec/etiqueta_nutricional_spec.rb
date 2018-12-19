@@ -1,3 +1,5 @@
+require 'benchmark'
+
 RSpec.describe EtiquetaNutricional do
   it "has a version number" do
     expect(EtiquetaNutricional::VERSION).not_to be nil
@@ -326,28 +328,28 @@ RSpec.describe InfoEtiquetaNutricional do
 			vec_aux=@vec_m
 			vec_mor=[]
 			tam=@vec_m.size()
-			for i in (0..(tam-1)) do
-				min=0;
+			puts Benchmark.measure{
+				for i in (0..(tam-1)) do
+					min=0;
 
-				for j in (1..(vec_aux.size()-1)) do
-					if vec_aux[j]<vec_aux[min] then
-						min=j
+					for j in (1..(vec_aux.size()-1)) do
+						if vec_aux[j]<vec_aux[min] then
+							min=j
+						end
+						j+=1
 					end
-					j+=1
+					vec_mor<<vec_aux[min]
+					vec_aux.delete_at(min)
+					i+=1
 				end
-				vec_mor<<vec_aux[min]
-				vec_aux.delete_at(min)
-				i+=1
-			end
-			expect(vec_mor).to eq([@menu1,@menu2,@menu3,@menu4,@menu5,@menu6,@menu7,@menu8,@menu9,@menu10])
-
+				expect(vec_mor).to eq([@menu1,@menu2,@menu3,@menu4,@menu5,@menu6,@menu7,@menu8,@menu9,@menu10])
+			}
 			@vec_m=[@menu1,@menu3,@menu10,@menu9,@menu6,@menu2,@menu4,@menu5,@menu7,@menu8]
 			
-			#@vec_m.each{|x|}	
-	
-			expect(@vec_m.sort).to eq(vec_mor)
-
-			#expect(vec_aux.each{}).to eq(vec_mor)
+		
+			puts Benchmark.measure{
+				expect(@vec_m.sort).to eq(vec_mor)
+			}
 
 		end
 
@@ -389,23 +391,25 @@ RSpec.describe InfoEtiquetaNutricional do
 			pacients_aux=@pacients
 			pacients_sort=Lista.new
 			tam=pacients_aux.size()
-			for i in (0..(tam-1)) do
-                                min=0;
+			puts Benchmark.measure{
+				for i in (0..(tam-1)) do
+                                	min=0;
 
-                                for j in (1..(pacients_aux.size()-1)) do
+                            	    for j in (1..(pacients_aux.size()-1)) do
 					if ((pacients_aux.pos(j)).value()<pacients_aux.pos(min).value()) then
                                                 min=j
                                         end
                                         j+=1
-                                end
-				pacients_sort.push_tail(pacients_aux.pos(min).value)
-				pacients_aux.pop_at(min)
-                                i+=1
-                        end
-			vect_p_sort=[]
-			pacients_sort.each{|x| vect_p_sort<<x}
-			expect(vect_p_sort).to eq([@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10])
-
+                            	    end
+				    pacients_sort.push_tail(pacients_aux.pos(min).value)
+				    pacients_aux.pop_at(min)
+                                    i+=1
+                        	end
+				vect_p_sort=[]
+				pacients_sort.each{|x| vect_p_sort<<x}
+				expect(vect_p_sort).to eq([@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10])
+			}
+			
 			@pacients.push_tail(@p9)
                         @pacients.push_tail(@p2)
                         @pacients.push_tail(@p8)
@@ -417,8 +421,9 @@ RSpec.describe InfoEtiquetaNutricional do
                         @pacients.push_tail(@p7)
                         @pacients.push_tail(@p4)
 
-			expect(@pacients.sort).to eq([@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10])
-			
+			puts Benchmark.measure{
+				expect(@pacients.sort).to eq([@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10])
+			}
 		end
 
 	end
