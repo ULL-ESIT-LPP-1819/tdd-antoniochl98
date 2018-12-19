@@ -304,5 +304,122 @@ RSpec.describe InfoEtiquetaNutricional do
 			v=@pacients.select{ |x| ((0.9*x.gasto_ener_total()) <=sum && sum<=(1.1*x.gasto_ener_total()))}
 			expect(v.size()).to eq(0)
 		end
+
+		it "Ordenación de menús" do 
+			prod1 = InfoEtiquetaNutricional.new("nombre_1",0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+                        prod2 = InfoEtiquetaNutricional.new("nombre_2",1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+                        prod3 = InfoEtiquetaNutricional.new("nombre_3",2,2,2,2,2,2,2,2,2,2,2,2,2,2)
+                        prod4 = InfoEtiquetaNutricional.new("nombre_4",3,3,3,3,3,3,3,3,3,3,3,3,3,3)
+                        prod5 = InfoEtiquetaNutricional.new("nombre_5",4,4,4,4,4,4,4,4,4,4,4,4,4,4)
+                        prod6 = InfoEtiquetaNutricional.new("nombre_6",5,5,5,5,5,5,5,5,5,5,5,5,5,5)
+			@menu1=Menu.new([prod1,prod1,prod1,prod1])
+			@menu2=Menu.new([prod2,prod2,prod2,prod2])
+			@menu3=Menu.new([prod2,prod2,prod3,prod3])
+			@menu4=Menu.new([prod3,prod3,prod3,prod3])
+			@menu5=Menu.new([prod3,prod3,prod4,prod4])
+			@menu6=Menu.new([prod4,prod4,prod4,prod4])
+			@menu7=Menu.new([prod4,prod4,prod5,prod5])
+			@menu8=Menu.new([prod5,prod5,prod5,prod5])
+			@menu9=Menu.new([prod5,prod5,prod6,prod6])
+			@menu10=Menu.new([prod6,prod6,prod6,prod6])
+			@vec_m=[@menu1,@menu3,@menu10,@menu9,@menu6,@menu2,@menu4,@menu5,@menu7,@menu8]
+			vec_aux=@vec_m
+			vec_mor=[]
+			tam=@vec_m.size()
+			for i in (0..(tam-1)) do
+				min=0;
+
+				for j in (1..(vec_aux.size()-1)) do
+					if vec_aux[j]<vec_aux[min] then
+						min=j
+					end
+					j+=1
+				end
+				vec_mor<<vec_aux[min]
+				vec_aux.delete_at(min)
+				i+=1
+			end
+			expect(vec_mor).to eq([@menu1,@menu2,@menu3,@menu4,@menu5,@menu6,@menu7,@menu8,@menu9,@menu10])
+
+			@vec_m=[@menu1,@menu3,@menu10,@menu9,@menu6,@menu2,@menu4,@menu5,@menu7,@menu8]
+			
+			#@vec_m.each{|x|}	
+	
+			expect(@vec_m.sort).to eq(vec_mor)
+
+			#expect(vec_aux.each{}).to eq(vec_mor)
+
+		end
+
+		it"Ordenación de pacientes" do
+			datos1 = DatosSalud.new(1,18,20,'H',70.0,80.0)
+                        datos2 = DatosSalud.new(1,22,20,'H',70.0,80.0)
+                        datos3 = DatosSalud.new(1,27,20,'H',70.0,80.0)
+                        datos4 = DatosSalud.new(1,32,20,'H',70.0,80.0)
+                        datos5 = DatosSalud.new(1,37,20,'H',70.0,80.0)
+                        datos6 = DatosSalud.new(1,41,20,'H',70.0,80.0)
+                        datos7 = DatosSalud.new(1,42,20,'H',70.0,80.0)
+                        datos8 = DatosSalud.new(1,43,20,'H',70.0,80.0)
+                        datos9 = DatosSalud.new(1,44,20,'H',70.0,80.0)
+                        datos10 = DatosSalud.new(1,45,20,'H',70.0,80.0)
+
+                        @p1=Paciente.new("Pipo",datos1)
+                        @p2=Paciente.new("Pipo",datos2)
+                        @p3=Paciente.new("Pipo",datos3)
+                        @p4=Paciente.new("Pipo",datos4)
+                        @p5=Paciente.new("Pipo",datos5)
+                        @p6=Paciente.new("Pipo",datos6)
+			@p7=Paciente.new("Pipo",datos7)
+			@p8=Paciente.new("Pipo",datos8)
+			@p9=Paciente.new("Pipo",datos9)
+			@p10=Paciente.new("Pipo",datos10)
+			@pacients=Lista.new
+                        @pacients.push_tail(@p9)
+                        @pacients.push_tail(@p2)
+                        @pacients.push_tail(@p8)
+                        @pacients.push_tail(@p3)
+                        @pacients.push_tail(@p6)
+                        @pacients.push_tail(@p1)
+                        @pacients.push_tail(@p10)
+                        @pacients.push_tail(@p5)
+                        @pacients.push_tail(@p7)
+                        @pacients.push_tail(@p4)
+
+			
+			pacients_aux=@pacients
+			pacients_sort=Lista.new
+			tam=pacients_aux.size()
+			for i in (0..(tam-1)) do
+                                min=0;
+
+                                for j in (1..(pacients_aux.size()-1)) do
+					if ((pacients_aux.pos(j)).value()<pacients_aux.pos(min).value()) then
+                                                min=j
+                                        end
+                                        j+=1
+                                end
+				pacients_sort.push_tail(pacients_aux.pos(min).value)
+				pacients_aux.pop_at(min)
+                                i+=1
+                        end
+			vect_p_sort=[]
+			pacients_sort.each{|x| vect_p_sort<<x}
+			expect(vect_p_sort).to eq([@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10])
+
+			@pacients.push_tail(@p9)
+                        @pacients.push_tail(@p2)
+                        @pacients.push_tail(@p8)
+                        @pacients.push_tail(@p3)
+                        @pacients.push_tail(@p6)
+                        @pacients.push_tail(@p1)
+                        @pacients.push_tail(@p10)
+                        @pacients.push_tail(@p5)
+                        @pacients.push_tail(@p7)
+                        @pacients.push_tail(@p4)
+
+			expect(@pacients.sort).to eq([@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10])
+			
+		end
+
 	end
 end

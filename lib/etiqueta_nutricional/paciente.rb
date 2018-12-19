@@ -1,6 +1,7 @@
 
 require "etiqueta_nutricional/persona"
 class Paciente < Persona
+	include Comparable
 	attr_reader :datos_antro
 	def initialize(nombre,datos_antro=nil,act_fis="reposo")
 		super(nombre)
@@ -8,9 +9,9 @@ class Paciente < Persona
 		@factor_act_fis=0
 		if act_fis=="ligera"
 			@factor_act_fis=0.12
-		elsif act_fis="moderada"
+		elsif act_fis=="moderada"
 			@factor_act_fis=0.27
-		elsif act_fis="intensa"
+		elsif act_fis=="intensa"
 			@factor_act_fis=0.54
 		end
 
@@ -74,4 +75,8 @@ class Paciente < Persona
 		end
 	end
 
+	def <=>(other)
+		return nil unless other.instance_of?Paciente
+		datos_antro<=>other.datos_antro
+	end
 end	

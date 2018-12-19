@@ -4,6 +4,7 @@ require "etiqueta_nutricional/lista"
 require "etiqueta_nutricional/datos_salud"
 require "etiqueta_nutricional/persona"
 require "etiqueta_nutricional/paciente"
+require "etiqueta_nutricional/menu"
 
 module EtiquetaNutricional
   # Your code goes here...

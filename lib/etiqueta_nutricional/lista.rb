@@ -104,7 +104,7 @@ class Lista
 	def to_s()
 		s=""
 		aux=@head
-		while !aux.next.nil do 
+		while !aux.next.nil? do 
 			s+="["+aux.value.to_s+"]"
 			aux=aux.next
 			if aux.value!="NULL"
@@ -115,6 +115,31 @@ class Lista
 			s+="["+aux.value.to_s+"]"
 		end
 		s
+	end
+	
+	def pos(i)
+		return nil unless i<size()
+		j=0
+		aux=@head
+		while j<i do
+			aux=aux.next
+			j+=1
+		end
+		aux
+	end
+	
+	def pop_at(i)
+		return nil unless i<size()
+		if i==0 
+			pop_head
+		elsif i==(size()-1)
+			pop_tail
+		else 
+			aux=pos(i)
+			aux.prev.next=aux.next
+			aux.next.prev=aux.prev
+			@size-=1
+		end
 	end
 
 	def each
