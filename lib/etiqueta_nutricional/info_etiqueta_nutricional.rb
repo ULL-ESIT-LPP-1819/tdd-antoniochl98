@@ -10,7 +10,7 @@ class InfoEtiquetaNutricional
 		c=0
 		i=0
 		while i<5 do
-			if v1[i]!="no_declarado" then
+			if (v1[i]!="no_declarado" && !v1[i].nil?) then
 				c+=(v1[i]*v2[i])
 			end
 			i+=1
